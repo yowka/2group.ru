@@ -29,3 +29,38 @@ php artisan config:publish cors
 ```shell
 php artisan storage:link
 ```
+В корне проекта создан файл .htaccess
+```php
+RewriteEngine on
+RewriteRule ^(.*)$ public/$1
+```
+## Установка проекта из репозитория
+Склонируем репозитория в папку domains
+```shell
+cd domains
+git clone https://github.com/yowka/2group.ru.git
+```
+Перейдем в папку с проектом и установим composer-зависимости
+```shell
+cd 2group.ru
+composer install
+```
+Скопируем файл .env.example в файл .env
+```shell
+copy .env.example .env
+```
+Генерируем ключ шифрования
+```shell
+php artisan key:generate
+```
+Меняем файл конфигурации .env (пример для базы данных MySQL)
+```php
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=Имя_БД
+DB_USERNAME=Логин_Пользователя_БД
+DB_PASSWORD=Пароль_Пользователя_БД
+
+SESSION_DRIVER=file
+```
